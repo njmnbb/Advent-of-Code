@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Advent of Code - Day 4</title>
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+	<!-- md5 Library
+	Created by Sebastian Tschan
+	https://github.com/blueimp/JavaScript-MD5 -->
+	<script src = "JavaScript-MD5-1.1.1/js/md5.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			var input = "iwrupvqb";
+			var number = 0;
+			var hash = md5(input + number);
+
+			// Function can be used to find any number of 0's depending on the function's parameter
+			function getHash(value) {
+
+				// Error checking for non-numbers
+				if($.isNumeric(value) == false) return false;
+
+				// Calculating how many zeros to use in making the hash
+				var numZeros = "";
+				for(var i = 0; i < value; i++) {
+					numZeros += "0";
+				}
+
+				// Looping through all possible variations to find a combination with five 0's
+				while(hash.substring(0, value) != numZeros) {
+					number++;
+					hash = md5(input + number);
+				};
+
+				return number;
+			};
+
+			$("#1").html(`Question 1: The answer for the first five zeros of ${input} is ${getHash(5)}`);
+			$("#2").html(`Question 2: The answer for the first six zeros of ${input} is ${getHash(6)}`);
+		});	
+	</script>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		p {
+			text-align: center;
+			font-size: 25px;
+			font-family: 'Helvetica';
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<p>Question source: <a href = 'http://adventofcode.com/day/4'>http://adventofcode.com/day/4</a></p>
+	<p>All logic can be found in the source code on this page.</p>
+	<p id = "1"></p>
+	<p id = "2"></p>
+</body>
+</html>
