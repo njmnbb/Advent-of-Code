@@ -18,24 +18,11 @@
 				// Parsing the string and counting the number of times each direction appears
 				// Santa is even numbers and Robo-Santa is odd numbers
 				switch (input[i]) {
-					case "^":
-						if(i % 2) santa.y++;
-						else robot.y++;
-						break;
-					case ">":
-						if(i % 2) santa.x++;
-						else robot.x++;
-						break;
-					case "v":
-						if(i % 2) santa.y--;
-						else robot.y--;
-						break;
-					case "<":
-						if(i % 2) santa.x--;
-						else robot.x--;
-						break;
-					default:
-						break;
+					case "^": (i % 2) ? santa.y++ : robot.y++; break;
+					case ">": (i % 2) ? santa.x++ : robot.x++; break;
+					case "v": (i % 2) ? santa.y-- : robot.y--; break;
+					case "<": (i % 2) ? santa.x-- : robot.x--; break;
+					default: break;
 				};
 
 				// If it is Santa's turn, check the positions array for any duplicate values
